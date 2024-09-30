@@ -17,16 +17,17 @@ import s2 from '../../s1-main/App.module.css'
 * */
 
 // types
-export type AffairPriorityType = any // need to fix any
-export type AffairType = {
-    _id: any // need to fix any
-    name: any // need to fix any
+export type AffairPriorityType = 'high' | 'middle' | 'low' ; //входит в дефолтное, как expanded priority
+
+export type AffairType = { //дефолтное.
+    _id: number
+    name: string
     priority: AffairPriorityType
 }
-export type FilterType = 'all' | AffairPriorityType
+export type FilterType = 'all' | AffairPriorityType // или все выбраны кнопочки, или же то, что входит в дефолтное, то есть тот самый выбор
 
 // constants
-const defaultAffairs: any = [ // need to fix any
+const defaultAffairs: AffairType[] = [
     {_id: 1, name: 'React', priority: 'high'}, // студенты могут изменить содержимое name и количество элементов в массиве, ...priority не менять!
     {_id: 2, name: 'anime', priority: 'low'},
     {_id: 3, name: 'games', priority: 'low'},
@@ -35,23 +36,24 @@ const defaultAffairs: any = [ // need to fix any
 ]
 
 // pure helper functions
-export const filterAffairs = (affairs: any, filter: any): any => { // need to fix any
+export const filterAffairs = (affairs: AffairType[], filter: FilterType): any => {
 
+    if (filter === 'all') return affairs;
+    return affairs.filter(affair => affair.priority === filter)
 
-    return affairs // need to fix
 }
-export const deleteAffair = (affairs: any, _id: any): any => { // need to fix any
 
-    return affairs // need to fix
+export const deleteAffair = (affairs: AffairType[], _id: number): any => {
+    return affairs.filter(affair => affair._id !==_id)
 }
 
 function HW2() {
-    const [affairs, setAffairs] = useState<any>(defaultAffairs) // need to fix any
+    const [affairs, setAffairs] = useState<AffairType[]>(defaultAffairs) //указываем тип, потом указываем начальное состояние для этой константы. 
     const [filter, setFilter] = useState<FilterType>('all')
 
     const filteredAffairs = filterAffairs(affairs, filter)
-    const deleteAffairCallback = (_id: any) => { // need to fix any
-        // need to fix
+    const deleteAffairCallback = (_id: number) => {
+        setAffairs(deleteAffair(affairs, _id))
     }
 
     return (
