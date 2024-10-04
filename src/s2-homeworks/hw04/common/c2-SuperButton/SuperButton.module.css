@@ -1,36 +1,29 @@
 .button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .disabled {
-}
-
-.secondary {
-}
-
-.default {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .red {
-}
-
-.default:hover {
+    background-color: red;
+    color: white;
 }
 
 .red:hover {
+    background-color: darkred;
+}
+
+.secondary {
+    background-color: gray;
+    color: white;
 }
 
 .secondary:hover {
-}
-
-
-.default:active {
-}
-
-.secondary:active {
-}
-
-.red:active {
-}
-
-.button:disabled {
+    background-color: darkgray;
 }

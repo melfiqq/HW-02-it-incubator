@@ -1,6 +1,7 @@
 import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import s from './SuperCheckbox.module.css';
 
+// тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 type SuperCheckboxPropsType = Omit<DefaultInputPropsType, 'type'> & {
@@ -15,26 +16,26 @@ const SuperCheckbox: React.FC<SuperCheckboxPropsType> = ({
     spanClassName,
     children,
     id,
-    ...restProps
+    ...restProps // все остальные пропсы попадут в объект restProps
 }) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange?.(e);
         onChangeChecked?.(e.currentTarget.checked);
     };
 
-    const finalInputClassName = s.checkbox + (className ? ' ' + className : '');
+    const finalInputClassName = `${s.checkbox} ${className || ''}`;
 
     return (
         <label className={s.label}>
             <input
                 id={id}
-                type={'checkbox'}
+                type="checkbox"
                 onChange={onChangeCallback}
                 className={finalInputClassName}
                 {...restProps}
             />
             {children && (
-                <span id={id ? id + '-span' : undefined} className={spanClassName}>
+                <span id={id ? `${id}-span` : undefined} className={s.spanClassName}>
                     {children}
                 </span>
             )}

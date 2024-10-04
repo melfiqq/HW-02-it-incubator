@@ -7,8 +7,10 @@ import React, {
 } from 'react';
 import s from './SuperInputText.module.css';
 
+// тип пропсов обычного инпута 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
+// здесь мы говорим что у нашего инпута будут такие же пропсы как у обычного инпута, кроме type
 type SuperInputTextPropsType = Omit<DefaultInputPropsType, 'type'> & {
     onChangeText?: (value: string) => void;
     onEnter?: () => void;
@@ -39,20 +41,20 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = ({
         }
     };
 
-    const finalSpanClassName = s.error + (spanClassName ? ' ' + spanClassName : '');
-    const finalInputClassName = s.input + (error ? ' ' + s.errorInput : ' ' + s.superInput) + (className ? ' ' + className : '');
+    const finalSpanClassName = `${s.error} ${spanClassName || ''}`;
+    const finalInputClassName = `${s.input} ${error ? s.errorInput : s.superInput} ${className || ''}`;
 
     return (
         <div className={s.inputWrapper}>
             <input
                 id={id}
-                type={'text'}
+                type="text"
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}
                 {...restProps}
             />
-            <span id={id ? id + '-span' : undefined} className={finalSpanClassName}>
+            <span id={id ? `${id}-span` : undefined} className={finalSpanClassName}>
                 {error}
             </span>
         </div>
