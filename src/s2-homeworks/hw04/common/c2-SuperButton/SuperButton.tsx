@@ -5,11 +5,11 @@ import s from './SuperButton.module.css';
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
-    xType?: string;
+    xType?: 'default' | 'red' | 'secondary';
 };
 
 const SuperButton: React.FC<SuperButtonPropsType> = ({
-    xType,
+    xType = 'default',
     className,
     disabled,
     ...restProps // все остальные пропсы попадут в объект restProps
