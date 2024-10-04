@@ -1,38 +1,28 @@
-import React, {
-    ChangeEvent,
-    DetailedHTMLProps,
-    InputHTMLAttributes,
-} from 'react'
-import s from './SuperCheckbox.module.css'
-    
-// тип пропсов обычного инпута
-type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement>
+import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import s from './SuperCheckbox.module.css';
+
+type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 type SuperCheckboxPropsType = Omit<DefaultInputPropsType, 'type'> & {
-    onChangeChecked?: (checked: boolean) => void
-    spanClassName?: string
-}
+    onChangeChecked?: (checked: boolean) => void;
+    spanClassName?: string;
+};
 
-const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
-    {
-        onChange,
-        onChangeChecked,
-        className,
-        spanClassName,
-        children, // в эту переменную попадёт текст, типизировать не нужно так как он затипизирован в React.FC
-        id,
-
-        ...restProps // все остальные пропсы попадут в объект restProps
-    }
-) => {
+const SuperCheckbox: React.FC<SuperCheckboxPropsType> = ({
+    onChange,
+    onChangeChecked,
+    className,
+    spanClassName,
+    children,
+    id,
+    ...restProps
+}) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange?.(e);
-        onChangeChecked?.(e.currentTarget.checked)
-    }
+        onChangeChecked?.(e.currentTarget.checked);
+    };
 
-    const finalInputClassName = s.checkbox
-        + (className ? ' ' + className : '')
+    const finalInputClassName = s.checkbox + (className ? ' ' + className : '');
 
     return (
         <label className={s.label}>
@@ -41,18 +31,15 @@ const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
                 type={'checkbox'}
                 onChange={onChangeCallback}
                 className={finalInputClassName}
-                {...restProps} // отдаём инпуту остальные пропсы если они есть (checked например там внутри)
+                {...restProps}
             />
             {children && (
-                <span
-                    id={id ? id + '-span' : undefined}
-                    className={s.spanClassName}
-                >
+                <span id={id ? id + '-span' : undefined} className={spanClassName}>
                     {children}
                 </span>
             )}
-        </label> // благодаря label нажатие на спан передастся в инпут
-    )
-}
+        </label>
+    );
+};
 
-export default SuperCheckbox
+export default SuperCheckbox;
