@@ -21,7 +21,30 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
         xType === 'red' ? s.red :
         xType === 'secondary' ? s.secondary :
         s.default
+    } ${disabled ? s.disabled : ''} ${className ? className : ''}`.trim();
+
+/* 
+    const finalClassName = [
+        s.button,
+        xType === 'red' ? s.red :
+        xType === 'secondary' ? s.secondary :
+        s.default, 
+        disabled ? s.disabled : '',
+        className || '' 
+    ].filter(Boolean).join(' ');
+    
+    
+    const finalClassName = `${s.button} ${
+        xType === 'red' ? s.red :
+        xType === 'secondary' ? s.secondary :
+        s.default
     } ${disabled ? s.disabled : ''} ${className ? className : ''}`;
+    
+    
+    
+    */
+
+
 
     //ИЛИ ЕСЛИ НЕ ПОНЯТНО С finalClassName  ТОЖЕ САМОЕ ПРИ ПОМОЩИ ШАБЛОННЫХ СТРОК:
     // `${s.СТИЛЬ КНОПКИ}  ${xType==='КРАСНЫЙ' ? ДАВАЙ КРАСНЫЙ СТИЛЬ : xType === 'secondary' ? ДАВАЙ СЕКОНДАРИ СТИЛЬ: ДАВАЙ ПО ДЕФОЛТУ } ${disabled ? ДАВАЙ ДИЗАБЛЕТ СТИЛЬ :  ПУСТУЮ СТРОКУ} `
