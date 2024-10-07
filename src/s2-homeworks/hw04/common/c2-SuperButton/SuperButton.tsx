@@ -21,28 +21,7 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
         xType === 'red' ? s.red :
         xType === 'secondary' ? s.secondary :
         s.default
-    } ${disabled ? s.disabled : ''} ${className ? className : ''}`.trim();
-
-/* 
-    const finalClassName = [
-        s.button,
-        xType === 'red' ? s.red :
-        xType === 'secondary' ? s.secondary :
-        s.default, 
-        disabled ? s.disabled : '',
-        className || '' 
-    ].filter(Boolean).join(' ');
-    
-    
-    const finalClassName = `${s.button} ${
-        xType === 'red' ? s.red :
-        xType === 'secondary' ? s.secondary :
-        s.default
     } ${disabled ? s.disabled : ''} ${className ? className : ''}`;
-    
-    
-    
-    */
 
 
 
