@@ -5,19 +5,23 @@ import s from './SuperButton.module.css';
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
-    xType?: 'default' | 'red' | 'secondary'; // ограничиваем возможные типы
+    xType?: 'default' | 'red' | 'secondary'; 
 };
 
 const SuperButton: React.FC<SuperButtonPropsType> = ({
-    xType = 'default', // устанавливаем значение по умолчанию
+    xType = 'default', // значение по умолчанию
     className,
     disabled,
-    ...restProps // все остальные пропсы попадут в объект restProps
+    ...restProps // остальные пропсы
 }) => {
-    const finalClassName = `${s.button} ${s[xType]} ${disabled ? s.disabled : ''} ${className || ''}`.trim(); // смешивание классов
+    const finalClassName = `${s.button} ${s[xType]} ${className || ''}`.trim(); // смешивание классов
 
     return (
-        <button disabled={disabled} className={finalClassName} {...restProps}>
+        <button
+            disabled={disabled}
+            className={finalClassName}
+            {...restProps} // передаем остальные пропсы
+        >
             {restProps.children} {/* отображаем содержимое кнопки */}
         </button>
     );
