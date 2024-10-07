@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import s from './SuperInputText.module.css';
 
-// тип пропсов обычного инпута 
+// тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 // здесь мы говорим что у нашего инпута будут такие же пропсы как у обычного инпута, кроме type
@@ -27,22 +27,22 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = ({
     className,
     spanClassName,
     id,
-    ...restProps
+    ...restProps // все остальные пропсы попадут в объект restProps
 }) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e);
+        onChange?.(e); // если есть пропс onChange, то передать ему e
         onChangeText?.(e.currentTarget.value);
     };
 
     const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
         onKeyPress?.(e);
         if (onEnter && e.key === 'Enter') {
-            onEnter();
+            onEnter(); // если нажата кнопка Enter, вызываем onEnter
         }
     };
 
     const finalSpanClassName = `${s.error} ${spanClassName || ''}`;
-    const finalInputClassName = `${s.input} ${error ? s.errorInput : s.superInput} ${className || ''}`;
+    const finalInputClassName = `${s.input} ${error ? s.errorInput : s.superInput} ${className || ''}`.trim(); // исправлено смешивание классов
 
     return (
         <div className={s.inputWrapper}>
@@ -52,7 +52,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = ({
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}
-                {...restProps}
+                {...restProps} // передаём остальные пропсы
             />
             <span id={id ? `${id}-span` : undefined} className={finalSpanClassName}>
                 {error}
