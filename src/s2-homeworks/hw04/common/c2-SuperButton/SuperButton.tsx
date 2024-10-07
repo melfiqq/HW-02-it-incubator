@@ -1,7 +1,6 @@
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import s from './SuperButton.module.css';
 
-// тип пропсов обычной кнопки
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
@@ -14,15 +13,15 @@ const SuperButton: React.FC<SuperButtonPropsType> = ({
     disabled,
     ...restProps // остальные пропсы
 }) => {
-    const finalClassName = `${s.button} ${s[xType]} ${className || ''}`.trim(); // смешивание классов
+    const finalClassName = `${s.button} ${s[xType]} ${className || ''}`.trim();
 
     return (
         <button
             disabled={disabled}
             className={finalClassName}
-            {...restProps} // передаем остальные пропсы
+            {...restProps} 
         >
-            {restProps.children} {/* отображаем содержимое кнопки */}
+            {restProps.children}
         </button>
     );
 };

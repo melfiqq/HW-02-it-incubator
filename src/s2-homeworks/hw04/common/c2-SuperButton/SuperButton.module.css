@@ -5,9 +5,9 @@
     cursor: pointer;
 }
 
-.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.default {
+    background-color: blue; 
+    color: white;
 }
 
 .red {
@@ -15,15 +15,12 @@
     color: white;
 }
 
-.red:hover {
-    background-color: darkred;
-}
-
 .secondary {
     background-color: gray;
     color: white;
 }
 
-.secondary:hover {
-    background-color: darkgray;
+.button:disabled {
+    opacity: 0.5; 
+    cursor: not-allowed;
 }
