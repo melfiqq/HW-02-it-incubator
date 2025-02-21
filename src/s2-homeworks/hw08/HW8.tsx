@@ -27,21 +27,18 @@ const HW8 = () => {
     const finalPeople = people.map((u: UserType) => <User key={u._id} u={u}/>)
 
     const sortUp = () => {
-        const newPeople = homeWorkReducer(people, { type: 'sort', payload: 'up' });
-        setPeople(newPeople);
-        setCurrentSort('up');
+        setPeople(homeWorkReducer(people, { type: 'sort', payload: 'up' }))
+        setCurrentSort('up')
     }
 
     const sortDown = () => {
-        const newPeople = homeWorkReducer(people, { type: 'sort', payload: 'down' });
-        setPeople(newPeople);
-        setCurrentSort('down');
+        setPeople(homeWorkReducer(people, { type: 'sort', payload: 'down' }))
+        setCurrentSort('down')
     }
 
     const check18 = () => {
-        const newPeople = homeWorkReducer([...people], { type: 'check', payload: 18 });
-        setPeople(newPeople);
-        setCurrentSort('18');
+        setPeople(homeWorkReducer(people, { type: 'check', payload: 18 }))
+        setCurrentSort('18')
     }
 
     return (
