@@ -28,22 +28,23 @@ const HW8 = () => {
 
     const sortUp = () => {
         setPeople(
-            homeWorkReducer(people, {type: 'sort', payload: 'up'})
-        )
-        setCurrentSort('up')
+            homeWorkReducer(people, { type: 'sort', payload: 'up' })
+        );
+        setCurrentSort('up');
     }
-
+    
     const sortDown = () => {
         setPeople(
-            homeWorkReducer(people, {type: 'sort', payload: 'down'})
-        )
-        setCurrentSort('down')
+            homeWorkReducer(people, { type: 'sort', payload: 'down' })
+        );
+        setCurrentSort('down');
     }
+    
     const check18 = () => {
         setPeople(
-            homeWorkReducer(people, {type: 'check', payload: 18})
-        )
-        setCurrentSort('18')
+            homeWorkReducer(people, { type: 'check', payload: 18 })
+        );
+        setCurrentSort('18');
     }
 
     return (
